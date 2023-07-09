@@ -1,0 +1,1 @@
+export const instance = 'http://localhost:3000'
