@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className='sticky mt-0 lg:mt-6 w-full lg:w-2/3 bg-gray-400 border mx-auto flex justify-between items-center rounded-b-xl h-16 lg:rounded-3xl shadow-xl'>
         <div className='flex items-center ml-8'>
             <img className='rounded-full' src="https://e7.pngegg.com/pngimages/2/1016/png-clipart-silhouette-of-a-dove-bird-wings-logo.png" width={40} alt="" />
-            <p className='text-lg font-semibold text-white ml-2'>TEST</p>
+            <p className='text-lg font-semibold text-white ml-2'>ZARA STORE</p>
         </div>
         <div className='flex items-center mr-8 text-lg font-semibold text-white'>
           {localStorage.getItem('og') && <p className='cursor-pointer' onClick={() => navigate('/')}>HOME</p>}
