@@ -1,1 +1,1 @@
-export const instance = 'http://localhost:3000'
+export const instance = 'https://zara-store-server.onrender.com'
