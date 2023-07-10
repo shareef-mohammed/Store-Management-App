@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 const SigninPage = () => {
   return (
     <div className='w-full '>
-      <Navbar />
+      <Navbar signin={true} />
       <SignIn />
     </div>
   )

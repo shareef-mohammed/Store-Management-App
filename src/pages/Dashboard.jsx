@@ -5,7 +5,7 @@ import DashboardContent from '../components/DashboardContent'
 const Dashboard = () => {
   return (
     <div>
-        <Navbar />
+        <Navbar dashboard={true} />
         <DashboardContent />
     </div>
   )

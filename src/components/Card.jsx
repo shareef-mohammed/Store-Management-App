@@ -7,7 +7,7 @@ const Card = ({data, id, setClick, setData, collectId}) => {
     data.name = data.employee.name
   }
   return (
-    <div className={`mt-10 w-1/5 min-w-1/4 mx-auto ${collectId.includes(data._id) ? 'bg-slate-300' : 'bg-white'} text-center border rounded-lg shadow-lg cursor-pointer`} onClick={() =>{
+    <div className={`mt-10 w-[90%] md:mx-auto md:w-1/5 md:min-w-1/4 mx-auto ${collectId.includes(data._id) ? 'bg-slate-300' : 'bg-white'} text-center border rounded-lg shadow-lg cursor-pointer`} onClick={() =>{
             setClick(data)
             
         }}>

@@ -5,7 +5,7 @@ import Home from '../components/Home'
 const HomePage = () => {
   return (
     <div>
-        <Navbar />
+        <Navbar home={true} />
         <Home />
     </div>
   )

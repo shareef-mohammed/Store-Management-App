@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({dashboard, home, signin}) => {
   const navigate = useNavigate()
   return (
     <div className='sticky mt-0 lg:mt-6 w-full lg:w-2/3 bg-gray-400 border mx-auto flex justify-between items-center rounded-b-xl h-16 lg:rounded-3xl shadow-xl'>
@@ -10,8 +10,9 @@ const Navbar = () => {
             <p className='text-lg font-semibold text-white ml-2'>ZARA STORE</p>
         </div>
         <div className='flex items-center mr-8 text-lg font-semibold text-white'>
-          {localStorage.getItem('og') && <p className='cursor-pointer' onClick={() => navigate('/')}>HOME</p>}
-          {!localStorage.getItem('og') && <p className='cursor-pointer ml-4' onClick={() => navigate('/signin')}>SIGNIN</p>}
+          {localStorage.getItem('og') && !home && <p className='cursor-pointer' onClick={() => navigate('/')}>HOME</p>}
+          {localStorage.getItem('og') && home && <p className='cursor-pointer' onClick={() => navigate('/admin')}>ADMIN</p>}
+          {!localStorage.getItem('og') && !signin && <p className='cursor-pointer ml-4' onClick={() => navigate('/signin')}>SIGNIN</p>}
             {localStorage.getItem('og') && <p className='ml-4 hover:bg-red-800 cursor-pointer px-3 py-2 rounded-lg' onClick={() => {
               localStorage.removeItem('og')
               navigate('/signin')

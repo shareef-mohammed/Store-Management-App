@@ -56,7 +56,7 @@ const Home = () => {
           <Card data={data}  id={id} setClick={setClick} collectId={collectId} />
         ))}
       </div>
-      <div className="w-full flex justify-between">
+      <div className="w-full block md:flex justify-between">
         {first.length !== 0 &&
           first.map((data) => (
             <Card
@@ -68,7 +68,7 @@ const Home = () => {
             />
           ))}
       </div>
-      <div className="w-full flex justify-between">
+      <div className="w-full block md:flex justify-between">
         {second.length !== 0 &&
           second.map((data) => (
             <Card
