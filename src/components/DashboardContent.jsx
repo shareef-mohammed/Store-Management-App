@@ -177,8 +177,8 @@ const DashboardContent = () => {
             </svg>
           </span>
           <div>
-            <p className="text-xl font-bold text-white">Add Worker</p>
-            <p className="text-white font-medium">Add a new worker</p>
+            <p className="text-xl font-bold text-white">Add Assistant Manager</p>
+            <p className="text-white font-medium">Add a new assistant manager</p>
           </div>
         </motion.div>
         <AddWorker isOpen={isWorkerOpen} onClose={closeWorkerModal} />

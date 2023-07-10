@@ -10,6 +10,8 @@ const Navbar = () => {
             <p className='text-lg font-semibold text-white ml-2'>TEST</p>
         </div>
         <div className='flex items-center mr-8 text-lg font-semibold text-white'>
+          {localStorage.getItem('og') && <p className='cursor-pointer' onClick={() => navigate('/')}>HOME</p>}
+          {!localStorage.getItem('og') && <p className='cursor-pointer ml-4' onClick={() => navigate('/signin')}>SIGNIN</p>}
             {localStorage.getItem('og') && <p className='ml-4 hover:bg-red-800 cursor-pointer px-3 py-2 rounded-lg' onClick={() => {
               localStorage.removeItem('og')
               navigate('/signin')
