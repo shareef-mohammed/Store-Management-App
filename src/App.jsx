@@ -13,9 +13,9 @@ function App() {
       <Routes>
         <Route path='/signin' element={<Signin />} />
         <Route path='/' element={<HomePage />} />
-        <Route path='/co-workers/:id' element={<CoWorkersPage />} />
-        <Route path='/profile/:id' element={<ProfilePage />} />
         <Route element={<RequireAuth/> } >
+          <Route path='/profile/:id' element={<ProfilePage />} />
+          <Route path='/co-workers/:id' element={<CoWorkersPage />} />
           <Route path='/admin' element={<Dashboard />} />
         </Route>
       </Routes>

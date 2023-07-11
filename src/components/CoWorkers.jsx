@@ -6,6 +6,7 @@ import Card from "./Card";
 
 const CoWorkers = () => {
   const [workers, setWorkers] = useState([]);
+  const [fresh, setFresh] = useState(false)
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -16,7 +17,10 @@ const CoWorkers = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [fresh]);
+  const refresh = () => {
+    setFresh(!fresh)
+  }
   return (
     <div className="w-full pb-10">
       <div className="w-full">
@@ -30,7 +34,7 @@ const CoWorkers = () => {
       <div className="block md:flex overflow-scroll scrollbar-hide w-full">
         {
             workers.map((data, index) => (
-                <Card key={index} data={data} CoWorkers={true} />
+                <Card key={index} data={data} CoWorkers={true} refresh={refresh} />
             ))
         }
       </div>
