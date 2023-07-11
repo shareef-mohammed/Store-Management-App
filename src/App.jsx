@@ -4,13 +4,15 @@ import Signin from './pages/SigninPage';
 import Dashboard from './pages/Dashboard';
 import HomePage from './pages/HomePage';
 import RequireAuth from './RequireAuth';
+import CoWorkersPage from './pages/CoWorkersPage';
 
 function App() {
   return (
    <BrowserRouter>
       <Routes>
         <Route path='/signin' element={<Signin />} />
-        <Route path='/' element={<HomePage logout={false} />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/co-workers/:id' element={<CoWorkersPage />} />
         <Route element={<RequireAuth/> } >
           <Route path='/admin' element={<Dashboard />} />
         </Route>

@@ -3,14 +3,17 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { instance } from "../insatnce";
 
-const AddSubManager = ({ isOpen, onClose }) => {
-    const [stores, setStores] = useState([])
+const AddCoWorker = ({ isOpen, onClose }) => {
+    const [assManager, setAssManager] = useState([])
     const [employee, setEmployee] = useState([])
     useEffect(() => {
-      axios.get(`${instance}/api/get-store`)
+      axios.get(`${instance}/api/get-asst-manager`)
       .then((res) => {
         console.log(res.data)
-        setStores(res.data)
+        setAssManager(res.data)
+      })
+      .then((err) => {
+        console.log(err)
       })
 
       axios.get(`${instance}/api/get-employee`)
@@ -33,7 +36,7 @@ const AddSubManager = ({ isOpen, onClose }) => {
             const newOne = employee.filter((employer) => employer._id === data.empId)
             data.name = newOne[0].name
             console.log(data)
-            axios.post(`${instance}/api/add-sub-manager`, data)
+            axios.post(`${instance}/api/add-co-worker`, data)
             .then((res) => {
               console.log(res.data)
               onClose()
@@ -51,7 +54,7 @@ const AddSubManager = ({ isOpen, onClose }) => {
     >
       <div className="fixed inset-0 bg-black opacity-50 "></div>
       <div className="fixed inset-0 flex items-center justify-center">
-        <div className="bg-pink-100 w-[95%] md:w-2/3 lg:w-1/3  rounded-lg shadow-lg p-4">
+        <div className="bg-blue-100 w-[95%] md:w-2/3 lg:w-1/3  rounded-lg shadow-lg p-4">
           <div className="flex justify-end">
             <button
               className="text-xl font-semibold mr-4"
@@ -61,7 +64,7 @@ const AddSubManager = ({ isOpen, onClose }) => {
             </button>
           </div>
           <div className="text-center">
-            <p className="py-10 text-xl font-bold">New Sub Manager</p>
+            <p className="py-10 text-xl font-bold">New Manager</p>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="text-left px-8 pb-10 "
@@ -93,46 +96,26 @@ const AddSubManager = ({ isOpen, onClose }) => {
                 </span>
               </label>
               <label htmlFor="store" className="w-full mb-4 font-medium">
-                STORE
+                ASST. MANAGER
                 <span className="font-normal">
                   <select
                     className={`w-full mt-3 border h-10 rounded-lg pl-2 text-lg ${
-                      !errors.storeId && "mb-5"
+                      !errors.asstId && "mb-5"
                     }`}
-                    {...register("storeId", {
+                    {...register("asstId", {
                       required: true,
                     })}
                   >
                     <option value="">Select One</option>
                     {
-                      stores.length !== 0 && stores.map((store) => (
+                      assManager.length !== 0 && assManager.map((store) => (
                         <option key={store._id} value={store._id}>{store.name}</option>
                       ))
                     }
                   </select>
-                  {errors.storeId && (
+                  {errors.asstId && (
                     <p className="text-red-600 mb-5">
-                      {errors.storeId.type === "required" &&
-                        "This field is required"}
-                    </p>
-                  )}
-                </span>
-              </label>
-              <label htmlFor="store name" className="w-[80%] font-medium">
-                DEPARTMENT
-                <span className="font-normal">
-                  <input
-                    className={`w-full mt-3 border h-10 rounded-lg pl-2 text-lg ${
-                      !errors.department && "mb-5"
-                    }`}
-                    type="text"
-                    {...register("department", {
-                      required: true,
-                    })}
-                  />
-                  {errors.department && (
-                    <p className="text-red-600 mb-5">
-                      {errors.department.type === "required" &&
+                      {errors.asstId.type === "required" &&
                         "This field is required"}
                     </p>
                   )}
@@ -140,7 +123,7 @@ const AddSubManager = ({ isOpen, onClose }) => {
               </label>
               <div className="flex justify-end">
                 <button
-                  className="px-4 py-3 border hover:bg-pink-300 bg-pink-200 hover:text-white rounded-lg font-medium text-sm"
+                  className="px-4 py-3 border hover:bg-blue-300 bg-blue-200 hover:text-white rounded-lg font-medium text-sm"
                   type="submit"
                 >
                   Create
@@ -154,4 +137,4 @@ const AddSubManager = ({ isOpen, onClose }) => {
   );
 };
 
-export default AddSubManager;
+export default AddCoWorker;

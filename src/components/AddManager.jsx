@@ -106,7 +106,7 @@ const AddManager = ({ isOpen, onClose }) => {
                     <option value="">Select One</option>
                     {
                       stores.length !== 0 && stores.map((store) => (
-                        <option value={store._id}>{store.name}</option>
+                        <option key={store._id} value={store._id}>{store.name}</option>
                       ))
                     }
                   </select>
