@@ -27,7 +27,7 @@ const CoWorkers = () => {
         //   )
           }
       </div>
-      <div className="block md:grid grid-cols-4 gap-4">
+      <div className="block md:flex overflow-scroll scrollbar-hide w-full">
         {
             workers.map((data) => (
                 <Card key={data._id} data={data} CoWorkers={true} />

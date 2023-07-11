@@ -9,7 +9,7 @@ const Card = ({data, setClick, collectId, CoWorkers}) => {
   }
   console.log(data)
   return (
-    <div className={`mt-10 w-[90%] ${CoWorkers ? 'w-full' : 'w-[90% ]'} md:mx-auto md:w-1/5 md:min-w-1/4 mx-auto ${collectId?.includes(data._id) ? 'bg-slate-300' : 'bg-white'} text-center border rounded-lg shadow-lg cursor-pointer`} onClick={() =>{
+    <div className={`mt-10 w-[90%] md:mx-auto md:w-1/5 md:min-w-1/4 mx-auto ${collectId?.includes(data._id) ? 'bg-slate-300' : 'bg-white'} text-center border rounded-lg shadow-lg cursor-pointer`} onClick={() =>{
           if(data.employee.role === 'worker'){
             navigate(`/co-workers/${data.employee._id}`)
           } else {

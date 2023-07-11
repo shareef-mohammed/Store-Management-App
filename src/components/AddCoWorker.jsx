@@ -16,7 +16,7 @@ const AddCoWorker = ({ isOpen, onClose }) => {
         console.log(err)
       })
 
-      axios.get(`${instance}/api/get-employee`)
+      axios.get(`${instance}/api/all-worker-employee`)
       .then((res) => {
         setEmployee(res.data)
       })
