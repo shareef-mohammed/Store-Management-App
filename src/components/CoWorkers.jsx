@@ -29,8 +29,8 @@ const CoWorkers = () => {
       </div>
       <div className="block md:flex overflow-scroll scrollbar-hide w-full">
         {
-            workers.map((data) => (
-                <Card key={data._id} data={data} CoWorkers={true} />
+            workers.map((data, index) => (
+                <Card key={index} data={data} CoWorkers={true} />
             ))
         }
       </div>

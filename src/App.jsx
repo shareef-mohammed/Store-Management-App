@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import HomePage from './pages/HomePage';
 import RequireAuth from './RequireAuth';
 import CoWorkersPage from './pages/CoWorkersPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/signin' element={<Signin />} />
         <Route path='/' element={<HomePage />} />
         <Route path='/co-workers/:id' element={<CoWorkersPage />} />
+        <Route path='/profile/:id' element={<ProfilePage />} />
         <Route element={<RequireAuth/> } >
           <Route path='/admin' element={<Dashboard />} />
         </Route>
