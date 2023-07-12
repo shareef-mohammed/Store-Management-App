@@ -9,7 +9,6 @@ const AddCoWorker = ({ isOpen, onClose }) => {
     useEffect(() => {
       axios.get(`${instance}/api/get-asst-manager`)
       .then((res) => {
-        console.log(res.data)
         setAssManager(res.data)
       })
       .then((err) => {
@@ -35,10 +34,8 @@ const AddCoWorker = ({ isOpen, onClose }) => {
         } else {
             const newOne = employee.filter((employer) => employer._id === data.empId)
             data.name = newOne[0].name
-            console.log(data)
             axios.post(`${instance}/api/add-co-worker`, data)
             .then((res) => {
-              console.log(res.data)
               onClose()
             })
             .catch((err) => {

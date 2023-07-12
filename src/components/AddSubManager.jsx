@@ -7,9 +7,8 @@ const AddSubManager = ({ isOpen, onClose }) => {
     const [stores, setStores] = useState([])
     const [employee, setEmployee] = useState([])
     useEffect(() => {
-      axios.get(`${instance}/api/get-store`)
+      axios.get(`${instance}/api/get-all-stores`)
       .then((res) => {
-        console.log(res.data)
         setStores(res.data)
       })
 
@@ -32,10 +31,8 @@ const AddSubManager = ({ isOpen, onClose }) => {
         } else {
             const newOne = employee.filter((employer) => employer._id === data.empId)
             data.name = newOne[0].name
-            console.log(data)
             axios.post(`${instance}/api/add-sub-manager`, data)
             .then((res) => {
-              console.log(res.data)
               onClose()
             })
             .catch((err) => {

@@ -9,13 +9,11 @@ const AddWorker = ({ isOpen, onClose }) => {
     useEffect(() => {
       axios.get(`${instance}/api/get-sub-manager`)
       .then((res) => {
-        console.log(res.data)
         setSubManagers(res.data)
       })
 
       axios.get(`${instance}/api/get-employee`)
       .then((res) => {
-        console.log(res.data)
         setEmployee(res.data)
       })
     }, [])
@@ -31,13 +29,10 @@ const AddWorker = ({ isOpen, onClose }) => {
           e.preventDefault();
           return;
         } else {
-            console.log(data)
             const newOne = employee.filter((employer) => employer._id === data.empId)
-            console.log(newOne)
             data.name = newOne[0].name
             axios.post(`${instance}/api/add-worker`, data)
             .then((res) => {
-              console.log(res.data)
               onClose()
             })
             .catch((err) => {
@@ -108,7 +103,7 @@ const AddWorker = ({ isOpen, onClose }) => {
                     <option value="">Select One</option>
                     {
                       subManagers.length !== 0 && subManagers.map((store) => (
-                        <option value={store._id}>{store.name}</option>
+                        <option key={store._id} value={store._id}>{store.name}</option>
                       ))
                     }
                   </select>
