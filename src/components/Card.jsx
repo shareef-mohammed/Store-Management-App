@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../insatnce";
 import axios from "axios";
+import DeleteConfirm from "./DeleteConfirm";
 
 const Card = ({ data, setClick, collectId, CoWorkers, refresh }) => {
+  const [iid, setIid] = useState()
+  const [del, setDel] = useState(false)
+  const [delId, setDelId] = useState()
   const navigate = useNavigate();
   if (data.employee?.role === "worker") {
     data.department = data.worker?.department;
@@ -20,6 +24,14 @@ const Card = ({ data, setClick, collectId, CoWorkers, refresh }) => {
       console.log(err)
     })
   }
+
+  const openDelete = () => {
+    setDel(true);
+  };
+
+  const closeDelete = () => {
+    setDel(false);
+  }
   // console.log(data.coWorkers[0]._id)
   return (
     <div
@@ -28,9 +40,14 @@ const Card = ({ data, setClick, collectId, CoWorkers, refresh }) => {
       } text-center border rounded-lg shadow-lg cursor-pointer`}
      
     >
+        <DeleteConfirm isOpen={del} onClose={closeDelete} deleteFile={deleteCoWorker} id={delId} reload={refresh} />
+
       {CoWorkers && (
        <div className="flex justify-end m-4">
-         <p className="text-red-600 cursor-pointer " onClick={() => deleteCoWorker(data.coWorkers[0]._id)}>
+         <p className="text-red-600 cursor-pointer " onClick={() => {
+          setDelId(data.coWorkers[0]._id)
+          openDelete()
+         }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -42,6 +59,7 @@ const Card = ({ data, setClick, collectId, CoWorkers, refresh }) => {
             <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
           </svg>
         </p>
+
        </div>
       )}
       <div  onClick={() => {

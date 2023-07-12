@@ -52,8 +52,8 @@ const Home = () => {
         <p className="text-2xl font-bold border px-6 py-3 rounded-lg">ZARA DHM - 13861</p>
       </div>
       <div className="w-full">
-        {manager.length !== 0 && manager.map((data) => (
-          <Card data={data}  id={id} setClick={setClick} collectId={collectId} />
+        {manager.length !== 0 && manager.map((data, i) => (
+          <Card data={data} key={i} id={id} setClick={setClick} collectId={collectId} />
         ))}
       </div>
       <div className="w-full block md:flex justify-between">

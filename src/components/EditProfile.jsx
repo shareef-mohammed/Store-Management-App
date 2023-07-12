@@ -5,7 +5,8 @@ import { instance } from "../insatnce";
 
 const EditProfile = ({ isOpen, onClose, employee }) => {
   const [file, setFile] = useState();
-  console.log(employee);
+  const [err, setErr] = useState()
+
   const {
     register,
     handleSubmit,
@@ -86,7 +87,7 @@ const EditProfile = ({ isOpen, onClose, employee }) => {
             </button>
           </div>
           <div className="text-center">
-            <p className="py-10 text-xl font-bold">New Manager</p>
+            <p className="py-10 text-xl font-bold">Edit Profile</p>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="text-left px-8 pb-10 "

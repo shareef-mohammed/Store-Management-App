@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { instance } from "../insatnce";
 import EditProfile from "./EditProfile";
+import EditFileName from "./EditFileName";
+import DeleteConfirm from "./DeleteConfirm";
 
 const Profile = () => {
   const [employee, setEmployee] = useState();
@@ -10,8 +12,15 @@ const Profile = () => {
   const [fresh, setFresh] = useState(false);
   const [err, setErr] = useState("");
   const [modal, setModal] = useState(false);
+  const [modal1, setModal1] = useState(false)
+  const [iid, setIid] = useState()
+  const [del, setDel] = useState(false)
+  const [delId, setDelId] = useState()
 
   const { id } = useParams();
+  const reload = () => {
+    setFresh(!fresh)
+  }
 
   const openModal = () => {
     setModal(true);
@@ -19,7 +28,22 @@ const Profile = () => {
 
   const closeModal = () => {
     setModal(false);
+
   };
+  const openModal1 = () => {
+    setModal1(true);
+  };
+
+  const closeModal1 = () => {
+    setModal1(false);
+  }
+  const openDelete = () => {
+    setDel(true);
+  };
+
+  const closeDelete = () => {
+    setDel(false);
+  }
   useEffect(() => {
     axios
       .get(`${instance}/api/get-profiles/${id}`)
@@ -29,7 +53,7 @@ const Profile = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [modal, modal]);
+  }, [modal, fresh]);
 
   const uploadImage = async (file) => {
     try {
@@ -95,13 +119,23 @@ const Profile = () => {
   };
 
   const deleteFile = (id) => {
-    axios.post(`${instance}/api/delete-file/${employee._id}`,{id} )
-    .then((res) => {
-      setFresh(!fresh)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    console.log('3234')
+    axios
+      .post(`${instance}/api/delete-file/${employee._id}`, { id })
+      .then((res) => {
+        setFresh(!fresh);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteId = (id) => {
+    setDelId(id)
+  }
+
+  const fixId = (id) => {
+    setIid(id)
   }
 
   return (
@@ -119,6 +153,7 @@ const Profile = () => {
           Edit Profile
         </button>
         <EditProfile isOpen={modal} onClose={closeModal} employee={employee} />
+        <DeleteConfirm isOpen={del} onClose={closeDelete} deleteFile={deleteFile} id={delId} reload={reload} />
         <div>
           <input
             type="file"
@@ -142,9 +177,32 @@ const Profile = () => {
               >
                 {file.fileName}
               </a>
+              <EditFileName isOpen={modal1} onClose={closeModal1} id={iid} employee={employee._id} reload={reload}/>
+              <p className="px-2 text-green-600" onClick={() => {
+                openModal1()
+                fixId(file._id)
+              }}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-pencil-square"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  />
+                </svg>
+              </p>
               <p
                 className="text-red-600 cursor-pointer "
-                onClick={() => deleteFile(file._id)}
+                onClick={() => {
+                  deleteId(file._id)
+                  openDelete()
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
