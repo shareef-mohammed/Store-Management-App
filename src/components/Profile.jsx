@@ -119,11 +119,11 @@ const Profile = () => {
   };
 
   const deleteFile = (id) => {
-    console.log('3234')
     axios
       .post(`${instance}/api/delete-file/${employee._id}`, { id })
       .then((res) => {
         setFresh(!fresh);
+        closeDelete()
       })
       .catch((err) => {
         console.log(err);
@@ -153,7 +153,7 @@ const Profile = () => {
           Edit Profile
         </button>
         <EditProfile isOpen={modal} onClose={closeModal} employee={employee} />
-        <DeleteConfirm isOpen={del} onClose={closeDelete} deleteFile={deleteFile} id={delId} reload={reload} />
+        <DeleteConfirm isOpen={del} onClose={closeDelete} deleteFile={deleteFile} id={delId}  />
         <div>
           <input
             type="file"
